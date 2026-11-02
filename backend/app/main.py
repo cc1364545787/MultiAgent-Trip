@@ -11,7 +11,12 @@ from app.graph.workflow import run_travel_graph
 app = FastAPI(title="Multi-Agent Travel Planner", version="1.0.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.origin_list or ["*"],
+    # 明确指定允许跨域的域名
+    allow_origins = [
+        "https://multiagent-trip-frontend.onrender.com", # 你的前端线上地址
+        "http://localhost:5173",                          # 保留本地开发地址
+        "http://127.0.0.1:5173"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
